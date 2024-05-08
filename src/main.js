@@ -6,13 +6,17 @@ import router from '@/router'
 import store from '@/store';
 //三級聯動組件--全局組件
 import TypeNav from '@/components/TypeNav'
+
+import Carousel from '@/components/Carousel'
 //（全局組件名字，哪一個組件）,要先注冊名字
 Vue.component(TypeNav.name,TypeNav);
+Vue.component(Carousel.name,Carousel);
 //引入MockServer.js----mock數據
 import '@/mock/mockServe';
+//引入swiper
+import 'swiper/css/swiper.css';
 
 Vue.config.productionTip = false
-
 new Vue({
   render: h => h(App),
   //注冊路由信息

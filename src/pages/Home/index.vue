@@ -6,12 +6,8 @@
         <Recommend/>
         <Rank/>
         <Like/>
-        <Floor/>
-        <Floor/>
+        <Floor v-for="(floor,index) in floorList" :key="floor.id" :list="floor"/>
         <Brand/>
-        <!-- <button @click="add">加1</button>
-        <span>倉庫數據{{ count }}</span>
-        <button>減1</button> -->
     </div>
 </template>
 
@@ -35,8 +31,13 @@ export default{
         Brand,
         Floor
     },
+    mounted(){
+        this.$store.dispatch('getFloorList');
+    },
     computed:{
-        ...mapState(['count'])
+        ...mapState({
+            floorList:(state)=>state.home.floorList,
+        })
     },
     methods:{
         add(){

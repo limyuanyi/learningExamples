@@ -1,11 +1,13 @@
-import { reqCategoryList, reqGetBannerList } from "@/api";
+import { reqCategoryList, reqGetBannerList, reqFloorList } from "@/api";
 
 //home模塊的小倉庫
 const state = {
     //state中數據默認初始值別瞎寫，服務器返回對象還是數組，初始值就是什麽
     categoryList:[],
     //輪播圖數組
-    bannerList:[]
+    bannerList:[],
+    //floor數據
+    floorList:[]
 };
 const mutations = {
     CATEGORYLIST(state,categoryList){
@@ -13,6 +15,9 @@ const mutations = {
     },
     GETBANNERLIST(state,bannerList){
         state.bannerList = bannerList;
+    },
+    GETFLOORLIST(state,floorList){
+        state.floorList = floorList;
     }
 };
 const actions = {
@@ -30,9 +35,18 @@ const actions = {
             //console.log(result);
             if(result.code===200){
                 commit("GETBANNERLIST",result.data);
-                console.log(result);
+            }
+    },
+    //獲取floor數據
+    async getFloorList({commit}){
+            let result = await reqFloorList();
+            //console.log(result);
+            if(result.code===200){
+                commit("GETFLOORLIST",result.data);
+                //console.log(result);
             }
     }
+
 };
 const getters = {};
 
